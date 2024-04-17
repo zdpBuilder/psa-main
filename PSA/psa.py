@@ -5,7 +5,7 @@ import os
 import torchaudio
 import importlib
 import torchaudio.compliance.kaldi as Kaldi
-from ERes2Net import ERes2Net
+from PSA.model.ERes2Net import ERes2Net
 
 class FBank(object):
     def __init__(self,
@@ -112,7 +112,6 @@ class eres2net2PSA(nn.Module):
         return embedding
 
 #模型下载
-from modelscope import snapshot_download
 #model_dir = snapshot_download('iic/speech_eres2net_large_sv_zh-cn_3dspeaker_16k')
 # model_dir = 'C:/Users/54522/Desktop/speech_eres2net_large_sv_zh-cn_3dspeaker_16k'
 #

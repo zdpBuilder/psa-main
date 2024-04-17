@@ -13,8 +13,8 @@ import torch
 import math
 import torch.nn as nn
 import torch.nn.functional as F
-from fusion import AFF
-import pooling_layers as pooling_layers
+from PSA.model.fusion import AFF
+import PSA.model.pooling_layers as pooling_layers
 
 class ReLU(nn.Hardtanh):
 
