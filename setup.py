@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 # Package meta-data.
 NAME = 'PSA'
 DESCRIPTION = 'This package is written for PSA score prediction based on fine-tuned eres2net model'
-URL = 'https://github.com/xxx/xxx'
+URL = 'https://github.com/zdpBuilder/psa-main'
 EMAIL = 'zhangdaipeng@tju.edu.cn'
 AUTHOR = 'zhangdaipeng'
 REQUIRES_PYTHON = '>=3.7.7'
