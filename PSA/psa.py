@@ -60,7 +60,7 @@ class eres2net2PSA(nn.Module):
         feat = self.feature_extractor(wav).unsqueeze(0).to(self.device)
         # compute embedding
         with torch.no_grad():
-            embedding = self.embedding_model(feat).detach().cpu().numpy()
+            embedding = self.model(feat).detach().cpu().numpy()
 
         if save:
             save_path = embedding_dir / (
