@@ -7,7 +7,7 @@ MOS score prediction by fine-tuned wav2vec2.0 model
 The package installation was tested with python3.9
 
 ```bash
-pip install git+https://github.com/AndreevP/wvmos
+pip install git+https://github.com/zdpBuilder/psa-main
 ```
 ## Inference
 

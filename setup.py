@@ -7,7 +7,7 @@ DESCRIPTION = 'This package is written for PSA score prediction based on fine-tu
 URL = 'https://github.com/zdpBuilder/psa-main'
 EMAIL = 'zhangdaipeng@tju.edu.cn'
 AUTHOR = 'zhangdaipeng'
-REQUIRES_PYTHON = '>=3.7.7'
+REQUIRES_PYTHON = '>=3.7.0'
 VERSION = '1.0'
 
 setup(
