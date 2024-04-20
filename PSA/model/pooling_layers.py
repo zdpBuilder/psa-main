@@ -1,8 +1,3 @@
-# Copyright 3D-Speaker (https://github.com/alibaba-damo-academy/3D-Speaker). All Rights Reserved.
-# Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-
-""" This implementation is adapted from https://github.com/wenet-e2e/wespeaker."""
-
 import torch
 import torch.nn as nn
 

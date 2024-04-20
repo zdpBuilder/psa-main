@@ -1,13 +1,3 @@
-# Copyright 3D-Speaker (https://github.com/alibaba-damo-academy/3D-Speaker). All Rights Reserved.
-# Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
-
-""" 
-    Res2Net implementation is adapted from https://github.com/wenet-e2e/wespeaker.
-    ERes2Net incorporates both local and global feature fusion techniques to improve the performance. 
-    The local feature fusion (LFF) fuses the features within one single residual block to extract the local signal.
-    The global feature fusion (GFF) takes acoustic features of different scales as input to aggregate global signal.
-"""
-
 
 import torch
 import math
@@ -229,16 +219,4 @@ class ERes2Net(nn.Module):
             return embed_b
         else:
             return embed_a
-
-
-if __name__ == '__main__':
-
-    x = torch.zeros(10, 300, 80)
-    model = ERes2Net(feat_dim=80, embedding_size=192, pooling_func='TSTP')
-    model.eval()
-    out = model(x)
-    print(out.shape) # torch.Size([10, 192])
-
-    num_params = sum(param.numel() for param in model.parameters())
-    print("{} M".format(num_params / 1e6)) # 6.61M
 

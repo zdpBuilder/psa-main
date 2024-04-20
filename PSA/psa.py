@@ -6,7 +6,7 @@ import torchaudio
 import importlib
 import torchaudio.compliance.kaldi as Kaldi
 from PSA.model.ERes2Net import ERes2Net
-
+from sklearn.feature_selection import mutual_info_regression
 class FBank(object):
     def __init__(self,
         n_mels,
@@ -88,33 +88,20 @@ class eres2net2PSA(nn.Module):
 
     def forward(self, wav_file, embedding_dir, save=True):
         # extract embeddings
-        print(f'[INFO]: Extracting embeddings...')
         return self.compute_embedding(wav_file, embedding_dir, save)
-    # def get_one_wav_embedding(self, path, mean=True):
-    #
-    #     pred_mos = []
-    #     for path in tqdm.tqdm(sorted(glob.glob(f"{path}/*.wav"))):
-    #         signal = librosa.load(path, sr=16_000)[0]
-    #         x = self.processor(signal, return_tensors="pt", padding=True, sampling_rate=16000).input_values
-    #         if self.cuda_flag:
-    #             x = x.cuda()
-    #         with torch.no_grad():
-    #             res = self.forward(x).mean()
-    #         pred_mos.append(res.item())
-    #     if mean:
-    #         return np.mean(pred_mos)
-    #     else:
-    #         return pred_mos
 
-    def get_one_wav_embedding(self, wav_file,embedding_dir="",save=True):
+    def get_one_wav_embedding(self, wav_file,embedding_dir="",save=False):
         with torch.no_grad():
             embedding = self.forward(wav_file,embedding_dir,save)
         return embedding
 
-#模型下载
-#model_dir = snapshot_download('iic/speech_eres2net_large_sv_zh-cn_3dspeaker_16k')
-# model_dir = 'C:/Users/54522/Desktop/speech_eres2net_large_sv_zh-cn_3dspeaker_16k'
-#
-# a = eres2net2PSA(model_dir, cuda=True)
-# a.calculate_one("../audio/S001F001P000W00000.wav")
+    def get_similarity_score_by_cosine(self,source_wav_path,target_wav_path):
+        source_embedding = self.get_one_wav_embedding(source_wav_path)
+        target_embedding = self.get_one_wav_embedding(target_wav_path)
+        similarity = torch.nn.CosineSimilarity(dim=-1, eps=1e-6)
+        return similarity(torch.from_numpy(source_embedding), torch.from_numpy(target_embedding)).item()
 
+    def get_similarity_result_by_MI(self,source_wav_path,target_wav_path):
+        source_embedding = self.get_one_wav_embedding(source_wav_path)
+        target_embedding = self.get_one_wav_embedding(target_wav_path)
+        return mutual_info_regression(source_embedding.flatten().reshape(-1, 1),target_embedding.flatten())>0 if True else False
