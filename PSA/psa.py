@@ -99,7 +99,7 @@ class eres2net2PSA(nn.Module):
         source_embedding = self.get_one_wav_embedding(source_wav_path)
         target_embedding = self.get_one_wav_embedding(target_wav_path)
         similarity = torch.nn.CosineSimilarity(dim=-1, eps=1e-6)
-        return similarity(torch.from_numpy(source_embedding), torch.from_numpy(target_embedding)).item()[0]
+        return similarity(torch.from_numpy(source_embedding), torch.from_numpy(target_embedding)).item()
 
     def get_similarity_result_by_MI(self,source_wav_path,target_wav_path):
         source_embedding = self.get_one_wav_embedding(source_wav_path)
