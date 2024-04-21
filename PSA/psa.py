@@ -105,3 +105,8 @@ class eres2net2PSA(nn.Module):
         source_embedding = self.get_one_wav_embedding(source_wav_path)
         target_embedding = self.get_one_wav_embedding(target_wav_path)
         return mutual_info_regression(source_embedding.flatten().reshape(-1, 1),target_embedding.flatten())>0 if True else False
+    def get_PSA_Score(self,source_wav_path,target_wav_path):
+        result_score = self.get_similarity_result_by_MI(source_wav_path,target_wav_path)
+        if not result_score == 0:
+            result_score =  self.get_similarity_score_by_cosine(source_wav_path,target_wav_path)
+        return result_score

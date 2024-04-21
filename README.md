@@ -1,8 +1,8 @@
-# WV-MOS
-MOS score prediction by fine-tuned wav2vec2.0 model
 
-**Keywords:** MOS-Net, MB-Net, PESQ, STOI, speech quality
+# PSA
+psa Score prediction by fine-tuned ERes2net model
 
+ 
 ## Getting started
 The package installation was tested with python3.9
 
@@ -12,15 +12,11 @@ pip install git+https://github.com/zdpBuilder/psa-main
 ## Inference
 
 ```python
-from wvmos import get_wvmos
-model = get_wvmos(cuda=True)
+from PSA import get_PSA
+model =  get_PSA()
 
-mos = model.calculate_one("path/to/wav/file") # infer MOS score for one audio 
+PSA_score = model.get_similarity_result_by_MI("path/to/dir/with/wav/files","path/to/dir/with/wav/files")
 
-mos = model.calculate_dir("path/to/dir/with/wav/files", mean=True) # infer average MOS score across .wav files in directory
 ```
 
 ## Citation and Acknowledgment
-This work was done for the deep learning course in Skolteh university by Pavel Andreev, Nikolay Patakin, Oleg Desheulin, Alexander Kagan and Arthur Bulanbaev.
-More details are described in paper https://arxiv.org/abs/2203.13086
-
